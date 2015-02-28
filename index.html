@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>Leaflet la simple[1]</title>
+    <meta http-equiv="Content-Type"content="text/html; charset=latin1">
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+	<script type="text/javascript" src="leaflet/leafletembed.js"></script>
+
+  <script>
+  $(function() {
+    $( "#draggable" ).draggable();
+    $( "#map" ).droppable({
+      drop: function( event, ui ) {
+        $( this )
+          .addClass( "ui-state-highlight" )
+          .find( "p" )
+            .html( "Dropped!" );
+      }
+    });
+  });
+  </script>
+
+  </head>
+  <body onload="initmap()">
+    <div id="map" style="width : 500px; height : 500px;"></div>
+  
+    <div id="draggable" class="ui-widget-content">
+      <p>Drag me to my target</p>
+    </div>
+
+  </body>
+</html>
