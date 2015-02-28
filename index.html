@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
 
   <script>
  window.onload = function test(){
@@ -31,10 +31,7 @@
     $( "#draggable" ).draggable();
     $( "#map" ).droppable({
       drop: function( event, ui ) {
-        $( this )
-          .addClass( "ui-state-highlight" )
-          .find( "p" )
-            .html( "Dropped!" );
+         alert("coucou");
       }
     });
   });
@@ -42,9 +39,8 @@
 
   </head>
   <body>
-    <div id="map" style="width : 500px; height : 500px;"></div>
-  
-    <div id="draggable" class="ui-widget-content">
+    <div id="map" class="ui-widget-header" style="width : 500px; height : 500px;"></div>
+    <div id="draggable" style="width : 100px;"  class="ui-widget-content">
       <p>Drag me to my target</p>
     </div>
 
