@@ -1,24 +1,47 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <title>Leaflet la simple</title>
+    <title>Leaflet la simple[1]</title>
     <meta http-equiv="Content-Type"content="text/html; charset=latin1">
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-	  <script type="text/javascript" src="js/libs/leafletembed.js"></script>
-    <script src="js/libs/jquery-1.11.2.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
 
-    <script>
-    $(function() {
-      $( "#draggable" ).draggable();
-      $( "#map" ).droppable();
+
+  <script>
+ window.onload = function test(){
+   map = new L.Map('map');
+
+    // create the tile layer with correct attribution
+    var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+    var osm = new L.TileLayer(osmUrl);
+
+    // start the map in South-East England
+    map.setView(new L.LatLng(48.853, 2.35),12);
+    map.addLayer(osm);
+    var popup = L.popup()
+    .setLatLng([48.853, 2.35])
+    .setContent("Je suis notre dame de paris")
+    .openOn(map);
+  }
+
+  $(function() {
+    $( "#draggable" ).draggable();
+    $( "#map" ).droppable({
+      drop: function( event, ui ) {
+        $( this )
+          .addClass( "ui-state-highlight" )
+          .find( "p" )
+            .html( "Dropped!" );
+      }
     });
-    </script>
+  });
+  </script>
 
   </head>
-  <body >
-    <div onload="initmap()" id="map" class="ui-widget-content" style="width : 500px; height : 500px;"></div>
+  <body>
+    <div id="map" style="width : 500px; height : 500px;"></div>
   
     <div id="draggable" class="ui-widget-content">
       <p>Drag me to my target</p>
