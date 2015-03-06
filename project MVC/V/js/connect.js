@@ -39,6 +39,19 @@ $(
 			}
 			});
 
+		$("#deco").button().click(function() {
+				$.ajax({
+				type: "POST",
+				url: "index.php?control=user&action=deconnexion",
+				success: function(retour){
+					alert(retour);
+					$("#boutonsCo").css("display", "none");
+					$("#boutonsDeco").css("display", "block");
+					$("#afficheName").css("display", "none");
+					return false;
+				}
+			});
+		});
 		$("#ouvrir").button().click(function() { dialog1.dialog("open"); });
 		$("#ouvrirConn").button().click(function() { dialog2.dialog("open"); });
 	}
@@ -46,48 +59,48 @@ $(
 	
 
 function addUser() {
-
-var s = $(this).serialize();
+var name = $('#name').val();
+var mdp = $('#password').val();
+var mail = $('#mail').val();
+var confMdp = $('#confMdp').val();
+if(name === '' || mail === ''|| mdp === ''|| confMdp === '') {
+            alert('Les champs doivent etres remplis');
+} else {
 	$.ajax({
 		type: "POST",
-		data: s,
+		data: 'mail=' + mail + '&mdp=' + mdp + '&name=' + name+ '&confMdp=' + confMdp, // On fait passer nos variables, exactement comme en GET, au script more_com.php,
 		url: "index.php?control=user&action=inscription",
 		success: function(retour){
 			alert(retour);
-			$( "#dialog1" ).dialog( "close" );	
+			$( "#dialog1" ).dialog( "close" );
+			$("#boutonsDeco").css("display", "none");	
+			$("#boutonsCo").css("display", "block");
+			$("#afficheName").css("display", "block");
+			
 		}
 	});
+}
 	return false;
-
-
-	/*var valid = true;		
-	allFields.removeClass( "ui-state-error" );
-	valid = valid && checkLength( name, "username", 3, 16 );
-	valid = valid && checkLength( password, "password", 5, 16 );
-	valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
-	valid = valid && checkRegexp( password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9" );
-	if ( valid ) {
-		$( "#users tbody" ).append( "<tr>" +
-		"<td>" + name.val() + "</td>" +
-		"<td>" + password.val() + "</td>" +
-		"</tr>" );
-	}
-	
-	return valid;*/
 }
 
 function submit() {	
-	//code de réaction suite à la soumission du formulaire,
-	    //dans le cas d'une soumission à faire via une requête ajax
-	var s = $(this).serialize();
+var nameCon = $('#nameCon').val();
+var passwordCo = $('#passwordCo').val();
+if(nameCon === '' || passwordCo ==='') {
+    alert('Les champs doivent etres remplis');
+} else {
 	$.ajax({
-		type: "GET",
-		data: s,
+		type: "POST",
+		data: 'nameCon=' + nameCon + '&passwordCo=' + passwordCo,
 		url: "index.php?control=user&action=connect",
 		success: function(retour){
 			alert(retour);
 			$( "#dialog2" ).dialog( "close" );	
+			$("#boutonsDeco").css("display", "none");
+			$("#boutonsCo").css("display", "block");
+			$("#afficheName").css("display", "block");
 		}
 	});
+}
 	return false;
 }

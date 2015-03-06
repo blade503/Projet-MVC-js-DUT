@@ -2,9 +2,9 @@
 
 //à l'iut
 $hote="localhost";   		
-$login="root";  		
-$pass="794613axel"; 			
-$bd="SCRUM"; 
+$login="jolliet";  		
+$pass="CoursDescartes"; 			
+$bd="pweb_gr04_jolliet"; 
 
 $link = mysqli_connect($hote, $login, $pass) 
 		or die ("erreur de connexion :" . mysql_error()); 

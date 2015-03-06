@@ -3,56 +3,77 @@
 function page () {
 	$login = "tapez votre login";
 	$pass = "tapez votre pass";
-	$echoLogin="";  /*pour initialiser � "" la zone d'affichage du login connect�*/
+	$echoLogin="";  /*pour initialiser à "" la zone d'affichage du login connecté*/
 	
 	require ('V/page.tpl'); /*affichage de la page du site*/
 }
 
 function connect () {
-	/* affichage propre du tableau $_POST :
-	echo ("<pre> POST= <br/>");
-	print_r ($_POST);
-	echo ("</pre><br/>"); die();
-	*/
-	
-	$login = isset($_POST['login'])?$_POST['login']:"tapez votre login";
-	$pass = isset($_POST['pass'])?$_POST['pass']:"tapez votre pass";
+	session_start();
+	if (count($_POST) == 0) {
+		echo "Aucunes valeurs";
+	} else {
+		require ('M/user_bd.php');
 
-	require ('M/user_bd.php');
-	if (connect_bd()) { 
-		echo "connexion ok";
+		$name =($_POST['nameCon']);
+		$mdp =($_POST['passwordCo']);
+
+		if(!verifConnexion($name,$mdp))
+			echo "Utilisateur non reconnu";
+		else {
+			$_SESSION['user'] = selectId($name);
+			echo "connexion ok";
+		}
 	}
-	else {
-		echo $echoLogin="erreur, recommencez svp";
-	}
-	//require ('V/page.tpl');
 }
 
 function inscription () {
-	/* affichage propre du tableau $_POST :
-	echo ("<pre> POST= <br/>");
-	print_r ($_POST);
-	echo ("</pre><br/>"); die();
-	*/
+	session_start();
+	if (count($_POST) == 0) {
+		echo "Aucunes valeurs";
+	} else {
+		$err = "";
+		$i = true;
 
-	$login = isset($_POST['name'])?$_POST['name']:"name";
-	$pass = isset($_POST['pass'])?$_POST['pass']:"password";
-	$passConfirm = isset($_POST['passConfirm'])?$_POST['passConfirm']:"password";
+		require ('M/user_bd.php');
+		$name = $_POST['name'];
+		$mail = $_POST['mail'];
+		$mdp = $_POST['mdp'];
+		$confMdp = $_POST['confMdp'];
+		
+		if($i && nameUtilise($name)) {
+			echo "Le nom spécifié est déjà utilisé !";
+			$i = false;
+		}
 
-	if(! preg_match("/^[a-z]([0-9a-z_\s])+$/i", $login)) 
-		return $error = "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter.";
-	if(! preg_match("/^([0-9a-zA-Z])+$/", $pass)) 
-		return $error = "Password field only allow : a-z 0-9";
+		if($i && mailUtilise($mail)) {
+			echo "Le mail spécifié est déjà utilisé !";
+			$i = false;
+		}
 
-	require ('M/user_bd.php');
-	if (inscr_bd()) { 
-		$echoLogin=$login;
-		echo "insc ok";
+		if($i && $mdp != $confMdp) {
+			echo "Les mots de passe ne correspondent pas !";
+			$i = false;
+		}	
+
+		if($i) {
+			if(inscrire($name, $mail, $mdp)) {
+				$_SESSION['user'] = selectId($name);
+				echo "Votre inscription a été prise en compte";
+			}
+			else {
+				echo "Probleme dans l'inscription";
+			}
+		} else {
+			echo $err;
+		}
 	}
-	else {
-		echo $error;
-	}
-	//require ('V/page.tpl');
+}
+
+function deconnexion () {
+	session_start();
+	$_SESSION['user'] = null;
+	echo 'Vous avez été déconnecté';
 }
 
 ?>
