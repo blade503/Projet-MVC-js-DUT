@@ -4,7 +4,7 @@
 
 function inscrire($name, $mail, $mdp) {
 	include('M/configSQL.php');
-	$iUsr = "insert into USER (nom, mail, mdp) values ('" . $name . "', '" . $mail . "', '" . $mdp . "')";
+	$iUsr = "insert into USER (nom, mail, mdp, score) values ('" . $name . "', '" . $mail . "', '" . $mdp . "', 0)";
 	return mysqli_query($link, $iUsr);
 }
 
@@ -57,6 +57,13 @@ function getNom($id) {
 	
 	$id = mysqli_fetch_assoc($res);
 	return $id["nom"];
+}
+
+function getClassement(){
+	include('M/configSQL.php');
+	$select = "SELECT * FROM user ORDER BY score DESC";
+	$res =  mysqli_query($link, $select);
+	return $res;
 }
 
 ?>
