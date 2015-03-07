@@ -1,5 +1,5 @@
 <?php
- session_start(); // On démarre la session AVANT toute chose
+ session_start();
 ?>
 
 <!doctype html>
@@ -17,8 +17,6 @@
 	
 	<script type="text/javascript" src="V/js/connect.js"></script>
 	<script type="text/javascript" src="V/js/qcm.js"></script>
-		<!-- <style>  #f1 {display:none;border:1px green solid;width:4em; height:7em;}   </style>
-		-->
 </head>
 <body>
 	<header>
@@ -39,18 +37,16 @@
 				<button id="deco">Deconnexion</button>
 			</span>
 
-		</div> <!-- fin connect-->
-	</header> <!-- fin header -->
+		</div>
+	</header> 
 	
-	<div id="dialog1" class="dialog" title="Create new user">
-		<?php if(isset($i)&& $i) echo ('<p class="validateTips">'+ $err+'</p>'); ?>
+	<div id="dialog1" class="dialog" title="Inscription">
 		<form class="dialogueContent" id="f1">
 			<fieldset>
-				<label for="name">Name</label>
-				<input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all"></br></br>
+				<label for="name">Nom</label>
+				<input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all"></br>
 				<label for="password">Mail</label>
 				<input type="text" name="mail" id="mail" value="" class="text ui-widget-content ui-corner-all"></br>
-
 				<label for="password">Password</label>
 				<input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all"></br>
 				<label for="passwordConfirm">Password</label>
@@ -61,12 +57,11 @@
 		</form>
 	</div>
 	<div id="dialog2" class="dialog" title="Connexion">
-		<p class="validateTips">Please enter your id.</p>
 		<form class="dialogueContent" id="f2">
 			<fieldset>
-				<label for="login">login </label>
+				<label for="login">Nom </label>
 				<input name="nameCon" id="nameCon" value="" /> <br/>
-				<label for="pass">pass</label>
+				<label for="pass">Password</label>
 				<input type="password" name="passwordCo" id="passwordCo" value="" class="text ui-widget-content ui-corner-all"></br></br>
 				<input type="submit" tabindex="-1" style="position:absolute; top:-1000px" value="connecter" />
 			</fieldset> 

@@ -1,10 +1,16 @@
 <?php
 
-//à l'iut
+$hote="localhost";   		
+$login="root";  		
+$pass=""; 			
+$bd="zebra"; 
+
+//à l'iut 
+/*
 $hote="localhost";   		
 $login="jolliet";  		
 $pass="CoursDescartes"; 			
-$bd="pweb_gr04_jolliet"; 
+$bd="pweb_gr04_jolliet"; */
 
 $link = mysqli_connect($hote, $login, $pass) 
 		or die ("erreur de connexion :" . mysql_error()); 

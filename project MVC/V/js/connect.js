@@ -17,8 +17,7 @@ $(
 				}
 			},
 			close: function() {
-				//form[ 0 ].reset();
-				//allFields.removeClass( "ui-state-error" );
+				 $('#f1')[0].reset();
 			}
 			});
 
@@ -34,8 +33,7 @@ $(
 				}
 			},
 			close: function() {
-				//form[ 0 ].reset();
-				//allFields.removeClass( "ui-state-error" );
+				 $('#f2')[0].reset();
 			}
 			});
 
@@ -43,20 +41,24 @@ $(
 				$.ajax({
 				type: "POST",
 				url: "index.php?control=user&action=deconnexion",
+				datatype: 'json',
 				success: function(retour){
-					alert(retour);
-					$("#boutonsCo").css("display", "none");
-					$("#boutonsDeco").css("display", "block");
-					$("#afficheName").css("display", "none");
+					var data = eval('(' + retour + ')');
+					if(data.statut){
+						$("#boutonsCo").css("display", "none");
+						$("#boutonsDeco").css("display", "inline-block");
+						$("#afficheName").text("");
+					} else alert(data.message); 
 					return false;
 				}
 			});
 		});
 		$("#ouvrir").button().click(function() { dialog1.dialog("open"); });
 		$("#ouvrirConn").button().click(function() { dialog2.dialog("open"); });
+		$("#f1").submit(addUser);
+		$("#f2").submit(submit);
 	}
 );
-	
 
 function addUser() {
 var name = $('#name').val();
@@ -70,12 +72,16 @@ if(name === '' || mail === ''|| mdp === ''|| confMdp === '') {
 		type: "POST",
 		data: 'mail=' + mail + '&mdp=' + mdp + '&name=' + name+ '&confMdp=' + confMdp, // On fait passer nos variables, exactement comme en GET, au script more_com.php,
 		url: "index.php?control=user&action=inscription",
+		datatype: 'json',
 		success: function(retour){
-			alert(retour);
-			$( "#dialog1" ).dialog( "close" );
-			$("#boutonsDeco").css("display", "none");	
-			$("#boutonsCo").css("display", "block");
-			$("#afficheName").css("display", "block");
+			var data = eval('(' + retour + ')');
+			
+			if(data.statut){
+				$( "#dialog1" ).dialog( "close" );
+				$("#boutonsDeco").css("display", "none");	
+				$("#boutonsCo").css("display", "inline-block");
+				$("#afficheName").text("Bienvenu " + name);
+			} else alert(data.message);
 			
 		}
 	});
@@ -93,12 +99,15 @@ if(nameCon === '' || passwordCo ==='') {
 		type: "POST",
 		data: 'nameCon=' + nameCon + '&passwordCo=' + passwordCo,
 		url: "index.php?control=user&action=connect",
+		datatype: 'json',
 		success: function(retour){
-			alert(retour);
-			$( "#dialog2" ).dialog( "close" );	
-			$("#boutonsDeco").css("display", "none");
-			$("#boutonsCo").css("display", "block");
-			$("#afficheName").css("display", "block");
+			var data = eval('(' + retour + ')'); 
+			if(data.statut){
+				$( "#dialog2" ).dialog( "close" );	
+				$("#boutonsDeco").css("display", "none");
+				$("#boutonsCo").css("display", "inline-block");
+				$("#afficheName").text("Bienvenu " + nameCon);
+			} else alert(data.message);
 		}
 	});
 }

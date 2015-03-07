@@ -19,10 +19,10 @@ function connect () {
 		$mdp =($_POST['passwordCo']);
 
 		if(!verifConnexion($name,$mdp))
-			echo "Utilisateur non reconnu";
+			echo json_encode(array('message' => "Utilisateur non reconnu", 'statut' =>false));
 		else {
 			$_SESSION['user'] = selectId($name);
-			echo "connexion ok";
+			echo json_encode(array('message' => "connexion ok", 'statut' =>true));
 		}
 	}
 }
@@ -30,7 +30,7 @@ function connect () {
 function inscription () {
 	session_start();
 	if (count($_POST) == 0) {
-		echo "Aucunes valeurs";
+		echo json_encode(array('message' => "Aucunes valeurs", 'statut' =>false));
 	} else {
 		$err = "";
 		$i = true;
@@ -42,38 +42,36 @@ function inscription () {
 		$confMdp = $_POST['confMdp'];
 		
 		if($i && nameUtilise($name)) {
-			echo "Le nom spécifié est déjà utilisé !";
+			echo json_encode(array('message' => "Le nom spécifié est déjà utilisé !", 'statut' =>false));
 			$i = false;
 		}
 
 		if($i && mailUtilise($mail)) {
-			echo "Le mail spécifié est déjà utilisé !";
+			echo json_encode(array('message' => "Le mail spécifié est déjà utilisé !", 'statut' =>false));
 			$i = false;
 		}
 
 		if($i && $mdp != $confMdp) {
-			echo "Les mots de passe ne correspondent pas !";
+			echo json_encode(array('message' => 'Les mots de passe ne correspondent pas !', 'statut' =>false ));
 			$i = false;
 		}	
 
 		if($i) {
 			if(inscrire($name, $mail, $mdp)) {
 				$_SESSION['user'] = selectId($name);
-				echo "Votre inscription a été prise en compte";
+				echo json_encode(array('message' => 'Votre inscription a été prise en compte', 'statut' =>true));
 			}
 			else {
-				echo "Probleme dans l'inscription";
+				echo json_encode(array('message' => 'Probleme dans l\'inscription', 'statut' =>false));
 			}
-		} else {
-			echo $err;
-		}
+		} 
 	}
 }
 
 function deconnexion () {
 	session_start();
 	$_SESSION['user'] = null;
-	echo 'Vous avez été déconnecté';
+	echo json_encode(array('message' => 'Vous avez été déconnecté', 'statut' =>true));
 }
 
 ?>
