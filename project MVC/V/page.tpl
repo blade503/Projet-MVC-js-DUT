@@ -8,9 +8,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>Jex</title>
 	<link rel="icon" type="image/png" href="V/images/icon.png" />
-	<link rel="stylesheet" type="text/css" href="V/css/connect.css" />
+
 	<link rel="stylesheet" type="text/css" href="V/css/jquery-ui.css" /> 
-	
+
+
 	<script type="text/javascript" src="V/js/jquery.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
@@ -19,6 +20,10 @@
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
 
+	<link rel="stylesheet" type="text/css" href="V/css/navigation.css" />
+	<link rel="stylesheet" type="text/css" href="V/css/connect.css" />
+	
+	<script type="text/javascript" src="V/js/navigation.js"></script>
 	<script type="text/javascript" src="V/js/connect.js"></script>
 	<script type="text/javascript" src="V/js/mapJS.js"></script>
 	
@@ -32,19 +37,19 @@
 
 <nav class="navbar navbar-inverse">
 	<div class="container">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">Bootstrap theme</a>
+		<div id="jex" class="navbar-header activeHead item">
+			<a class="navbar-brand" href="#">Jex</a>
 		</div>
 		<div id="navbar" class="">
 			<ul class="nav navbar-nav">
-				<li class="active">
-					<a href="#">Home</a>
+				<li id="profil" class="item ">
+					<a  href="#">Profil</a>
 				</li>
-				<li>
-					<a href="#about">About</a>
+				<li id="classement" class="item ">
+					<a href="#">Classement</a>
 				</li>
-				<li>
-					<a href="#contact">Contact</a>
+				<li id="regles" class="item ">
+					<a id="regles" href="#">Règles</a>
 				</li>
 			</ul>
 			<ul id="boutons" class="nav navbar-nav navbar-right">
