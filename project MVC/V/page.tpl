@@ -74,7 +74,7 @@
 </nav>
 
 
-	<div class="container">
+	<div class="container" id="page">
 			<div id="map"></div>
 		
 			<div id="France" class="ui-widget-content">

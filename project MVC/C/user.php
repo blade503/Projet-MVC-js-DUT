@@ -74,4 +74,19 @@ function deconnexion () {
 	echo json_encode(array('message' => 'Vous avez été déconnecté', 'statut' =>true));
 }
 
+function classement () {
+	session_start();
+	require ('M/user_bd.php');
+	$result =  getClassement();
+	$i = 0;
+    $tab = array();
+
+	while ($row = mysqli_fetch_assoc($result)) {
+		$tab[$i]['nom'] = $row['nom'];
+   		$tab[$i]['score']= $row['score'];
+   		$i++;
+}
+
+	echo json_encode(array('data' => $tab, 'statut' =>true));
+}
 ?>
