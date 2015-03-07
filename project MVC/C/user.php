@@ -85,7 +85,7 @@ function classement () {
 		$tab[$i]['nom'] = $row['nom'];
    		$tab[$i]['score']= $row['score'];
    		$i++;
-}
+	}
 
 	echo json_encode(array('data' => $tab, 'statut' =>true));
 }

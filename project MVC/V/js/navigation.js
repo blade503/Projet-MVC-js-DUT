@@ -21,7 +21,7 @@ function regles(){
 function classement(){
 	$(".item").removeClass("active").removeClass("activeHead");
 	$("#classement").addClass("active");
-	$("#page").html(classementAction);
+	classementAction();
 }
 
 function jex(){
@@ -46,6 +46,7 @@ function regleAction(){
 }
 
 function classementAction(){
+var text ="";
 	$.ajax({
 		type: "POST",
 		url: "index.php?control=user&action=classement",
@@ -54,7 +55,7 @@ function classementAction(){
 			var data = eval('(' + retour + ')');
 			if(data.statut){
 				var i = 0;
-				var text;
+				
 				 text = "<table class='table table-hover'>" 
 				 +"<tr><th>Classement</th><th>Nom</th><th>Score</th></tr>";
 				 $.each(data.data, function (key, data1) {  
@@ -62,10 +63,9 @@ function classementAction(){
 					    	i=i+1;			  
 					});
 				text += "</table>";
-				return text;
+				$("#page").html(text);
 			} else alert(data.message); 
 			return "false";
 		}
 	});	
-
 }
