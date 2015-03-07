@@ -53,8 +53,16 @@ function classementAction(){
 		success: function(retour){
 			var data = eval('(' + retour + ')');
 			if(data.statut){
-				console.log(data);
-				alert(data);
+				var i = 0;
+				var text;
+				 text = "<table class='table table-hover'>" 
+				 +"<tr><th>Classement</th><th>Nom</th><th>Score</th></tr>";
+				 $.each(data.data, function (key, data1) {  
+					    	text += '<tr><td>'  + i +'</td><td>'+ data1.nom + ' </td><td>' + data1.score + '</td></tr>';
+					    	i=i+1;			  
+					});
+				text += "</table>";
+				return text;
 			} else alert(data.message); 
 			return "false";
 		}
