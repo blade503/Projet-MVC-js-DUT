@@ -16,6 +16,7 @@ function profil(){
 function regles(){
 	$(".item").removeClass("active").removeClass("activeHead");
 	$("#regles").addClass("active");
+	$("#container").html("coucou !");
 	alert('regles');
 }
 
