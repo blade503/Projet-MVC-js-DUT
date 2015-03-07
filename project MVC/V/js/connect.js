@@ -33,24 +33,9 @@ $(
 			}
 			});
 
-		$("#deco").button().click(function() {
-				$.ajax({
-				type: "POST",
-				url: "index.php?control=user&action=deconnexion",
-				datatype: 'json',
-				success: function(retour){
-					var data = eval('(' + retour + ')');
-					if(data.statut){
-						$("#boutonsCo").css("display", "none");
-						$("#boutonsDeco").css("display", "inline-block");
-						$("#afficheName").text("");
-					} else alert(data.message); 
-					return false;
-				}
-			});
-		});
-		$("#ouvrir").button().click(function() { dialog1.dialog("open"); });
-		$("#ouvrirConn").button().click(function() { dialog2.dialog("open"); });
+		$("#deco").click(deconnexion);
+		$("#ouvrir").click(function() { dialog1.dialog("open"); });
+		$("#ouvrirConn").click(function() { dialog2.dialog("open"); });
 		$("#f1").submit(addUser);
 		$("#f2").submit(submit);
 	}
@@ -73,10 +58,9 @@ if(name === '' || mail === ''|| mdp === ''|| confMdp === '') {
 			var data = eval('(' + retour + ')');
 			
 			if(data.statut){
-				$( "#dialog1" ).dialog( "close" );
-				$("#boutonsDeco").css("display", "none");	
-				$("#boutonsCo").css("display", "inline-block");
-				$("#afficheName").text("Bienvenu " + name);
+				$("#boutons").html("<li><button id='deco' type='button' class='btn btn-cdefault navbar-btn'>Deconnexion</button></li>");
+				$( "#dialog1" ).dialog("close");
+				$("#deco").click(deconnexion);
 			} else alert(data.message);
 			
 		}
@@ -99,13 +83,31 @@ if(nameCon === '' || passwordCo ==='') {
 		success: function(retour){
 			var data = eval('(' + retour + ')'); 
 			if(data.statut){
-				$( "#dialog2" ).dialog( "close" );	
-				$("#boutonsDeco").css("display", "none");
-				$("#boutonsCo").css("display", "inline-block");
-				$("#afficheName").text("Bienvenu " + nameCon);
+				$("#boutons").html("<li><p id='afficheName' class='navbar-text'>Bienvenu " + nameCon +" !</p></li><li><button id='deco' type='button' class='btn btn-cdefault navbar-btn'>Deconnexion</button></li>");
+				$("#deco").click(deconnexion);
+				$( "#dialog2" ).dialog("close");
 			} else alert(data.message);
 		}
 	});
 }
 	return false;
+}
+
+function deconnexion(){
+	$.ajax({
+		type: "POST",
+		url: "index.php?control=user&action=deconnexion",
+		datatype: 'json',
+		success: function(retour){
+			var data = eval('(' + retour + ')');
+			if(data.statut){
+				$("#boutons").html("<li><button id='ouvrir' type='button' class='btn btn-cdefault navbar-btn'>Inscription</button></li>"+
+			"<li><button id='ouvrirConn' type='button' class='btn btn-default navbar-btn'>Connexion</button></li>");
+				$("#ouvrir").click(function() { $( "#dialog1" ).dialog("open"); });
+				$("#ouvrirConn").click(function() { $( "#dialog2" ).dialog("open"); });
+			} else alert(data.message); 
+			return false;
+		}
+	});	
+
 }
