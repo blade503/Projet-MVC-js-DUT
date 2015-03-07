@@ -1,9 +1,5 @@
-var f1;    /*équivalent : f1=document.getElementById('f1'); équivalent fait au chargt de la page $(function)*/
-
-//équivalent : window.onload=functio(){}
 $(
 	function() {
-		/*code de déclaration de la gestion événementielle*/$
 
 		var dialog1 = $( "#dialog1" ).dialog({
 			autoOpen: false,
@@ -11,8 +7,8 @@ $(
 			width: 450,
 			modal: true,
 			buttons: {
-				"Create an account": addUser,
-				Cancel: function() {
+				"Creation du compte" : addUser,
+				"Annuler" : function() {
 					dialog1.dialog("close");
 				}
 			},
@@ -27,8 +23,8 @@ $(
 			width: 450,
 			modal: true,
 			buttons: {
-				"Connexion": submit,
-				Cancel: function() {
+				"Connexion" : submit,
+				"Annuler": function() {
 					dialog2.dialog("close");
 				}
 			},

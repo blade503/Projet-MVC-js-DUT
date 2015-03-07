@@ -6,8 +6,8 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<title>connexion en jquery</title>
-	
+	<title>Jex</title>
+	<link rel="icon" type="image/png" href="V/images/icon.png" />
 	<link rel="stylesheet" type="text/css" href="V/css/connect.css" />
 	<link rel="stylesheet" type="text/css" href="V/css/jquery-ui.css" /> 
 	
@@ -41,7 +41,7 @@
 	</header> 
 	
 	<div id="dialog1" class="dialog" title="Inscription">
-		<form class="dialogueContent" id="f1">
+		<form class="dialogueContent" id="f1" method="POST">
 			<fieldset>
 				<label for="name">Nom</label>
 				<input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all"></br>
@@ -57,7 +57,7 @@
 		</form>
 	</div>
 	<div id="dialog2" class="dialog" title="Connexion">
-		<form class="dialogueContent" id="f2">
+		<form class="dialogueContent" id="f2" method="POST">
 			<fieldset>
 				<label for="login">Nom </label>
 				<input name="nameCon" id="nameCon" value="" /> <br/>
