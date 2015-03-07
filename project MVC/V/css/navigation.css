@@ -1,0 +1,8 @@
+.activeHead > .navbar-brand {
+	background-color: #080808;
+}
+
+.activeHead .navbar-brand:hover,.activeHead  .navbar-brand:focus {
+	background-color: #080808;
+}
+
