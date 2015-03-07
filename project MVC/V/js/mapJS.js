@@ -1,15 +1,17 @@
-﻿window.onload = function () {
+﻿var gData;
+
+window.onload = function () {
+	
 	
 	//Chargement initial de la MAP
 	var map = L.map('map').setView([46.603354,1.8883335],6);
-        L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {attribution: 'PING',maxZoom:6,minZoom:6}).addTo(map);
+    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {attribution: 'PING',maxZoom:6,minZoom:6}).addTo(map);
 	
 	//Rendre draggable les div des pays
 	$( "#France" ).draggable({ revert: "valid" });
 	$( "#Canada" ).draggable({ revert: "valid" });
 	$( "#Italie" ).draggable({ revert: "valid" });
 	$( "#Belgique" ).draggable({ revert: "valid" });
-	$( "#Japan" ).draggable({ revert: "valid" });
 
 	//Rendre la map droppable
 	 $( "#map" ).droppable({
@@ -84,7 +86,26 @@
 			L.circle(e.latlng, 1).addTo(map);			
 		    }
 		});
-	}
+	}	
 	
+	getData();
+
+	function getData(){
+		$.ajax({
+		datatype: 'json',
+		url: "M/BDville.json",
+		success: function(data)
+		{
+			console.log("ça marche pour le fichier JSON",data);
+			gData=data;
+			console.log(gData);
+		},
+		error: function(err)
+		{
+			console.log("ça plante pour le fichier JSON",err)
+		},
+	});	
+	}
+
 	
 }
