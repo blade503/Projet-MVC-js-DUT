@@ -54,7 +54,7 @@ var text ="";
 		success: function(retour){
 			var data = eval('(' + retour + ')');
 			if(data.statut){
-				var i = 0;
+				var i = 1;
 				
 				 text = "<table class='table table-hover'>" 
 				 +"<tr><th>Classement</th><th>Nom</th><th>Score</th></tr>";
@@ -66,6 +66,32 @@ var text ="";
 				$("#page").html(text);
 			} else alert(data.message); 
 			return "false";
+		}
+	});	
+}
+
+function augmenterScore(){
+	$.ajax({
+		type: "POST",
+		url: "index.php?control=user&action=augmenterScore",
+		success: function(retour){
+			var data = eval('(' + retour + ')');
+			if(data.statut){
+				alert(data.message); 
+			} else alert(data.message); 
+		}
+	});	
+}
+
+function diminuerScore(){
+	$.ajax({
+		type: "POST",
+		url: "index.php?control=user&action=diminuerScore",
+		success: function(retour){
+			var data = eval('(' + retour + ')');
+			if(data.statut){
+				alert(data.message); 
+			} else alert(data.message); 
 		}
 	});	
 }

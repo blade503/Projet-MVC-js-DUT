@@ -58,7 +58,9 @@ if(name === '' || mail === ''|| mdp === ''|| confMdp === '') {
 			var data = eval('(' + retour + ')');
 			
 			if(data.statut){
-				$("#boutons").html("<li><button id='deco' type='button' class='btn btn-cdefault navbar-btn'>Deconnexion</button></li>");
+				$("#boutons").html("<li><p id='afficheName' class='navbar-text'>Bienvenu " + name +" !</p></li><li><button id='deco' type='button' class='btn btn-cdefault navbar-btn'>Deconnexion</button></li>");
+				$( "#classement" ).before( "<li id='profil' class='item'><a  href='#''>Profil</a></li>" );
+				$("#profil").click(profil);
 				$( "#dialog1" ).dialog("close");
 				$("#deco").click(deconnexion);
 			} else alert(data.message);
@@ -85,6 +87,8 @@ if(nameCon === '' || passwordCo ==='') {
 			if(data.statut){
 				$("#boutons").html("<li><p id='afficheName' class='navbar-text'>Bienvenu " + nameCon +" !</p></li><li><button id='deco' type='button' class='btn btn-cdefault navbar-btn'>Deconnexion</button></li>");
 				$("#deco").click(deconnexion);
+				$( "#classement" ).before( "<li id='profil' class='item'><a  href='#''>Profil</a></li>" );
+				$("#profil").click(profil);
 				$( "#dialog2" ).dialog("close");
 			} else alert(data.message);
 		}
@@ -103,6 +107,7 @@ function deconnexion(){
 			if(data.statut){
 				$("#boutons").html("<li><button id='ouvrir' type='button' class='btn btn-cdefault navbar-btn'>Inscription</button></li>"+
 			"<li><button id='ouvrirConn' type='button' class='btn btn-default navbar-btn'>Connexion</button></li>");
+				$( "#profil" ).replaceWith('');
 				$("#ouvrir").click(function() { $( "#dialog1" ).dialog("open"); });
 				$("#ouvrirConn").click(function() { $( "#dialog2" ).dialog("open"); });
 			} else alert(data.message); 

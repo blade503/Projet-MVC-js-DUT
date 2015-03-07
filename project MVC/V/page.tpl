@@ -42,9 +42,11 @@
 		</div>
 		<div id="navbar" class="">
 			<ul class="nav navbar-nav">
+				<?php if( isset($_SESSION['user'])) { ?>
 				<li id="profil" class="item ">
 					<a  href="#">Profil</a>
 				</li>
+				<?php } ?>
 				<li id="classement" class="item ">
 					<a href="#">Classement</a>
 				</li>

@@ -4,7 +4,7 @@
 
 function inscrire($name, $mail, $mdp) {
 	include('M/configSQL.php');
-	$iUsr = "insert into USER (nom, mail, mdp, score) values ('" . $name . "', '" . $mail . "', '" . $mdp . "', 0)";
+	$iUsr = "insert into USER (nom, mail, mdp, score) values ('" . $name . "', '" . $mail . "', '" . $mdp . "', 20)";
 	return mysqli_query($link, $iUsr);
 }
 
@@ -65,5 +65,19 @@ function getClassement(){
 	$res =  mysqli_query($link, $select);
 	return $res;
 }
+
+function addPoint($id){
+	include('M/configSQL.php');
+	$query = "UPDATE user SET score = score +1 WHERE id = '%s'";
+	$req = sprintf($query, $id);
+	return mysqli_query($link, $req);
+}
+function removePoint($id){
+	include('M/configSQL.php');
+	$query = "UPDATE user SET score = score -1 WHERE id = '%s'";
+	$req = sprintf($query, $id);
+	return mysqli_query($link, $req);
+}
+
 
 ?>

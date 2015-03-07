@@ -74,6 +74,26 @@ function deconnexion () {
 	echo json_encode(array('message' => 'Vous avez été déconnecté', 'statut' =>true));
 }
 
+function augmenterScore () {
+	session_start();
+	require ('M/user_bd.php');
+	$mes = 'Vous avez gagné 1 point !';
+	$res = addPoint($_SESSION['user']);
+	if(! $res) $mes = 'Erreur lors de la modification des points';
+
+	echo json_encode(array('message' => $mes, 'statut' =>$res));
+}
+
+function diminuerScore(){
+	session_start();
+	require ('M/user_bd.php');
+	$mes = 'Vous avez perdu 1 point !';
+	$res = removePoint($_SESSION['user']);
+	if(! $res) $mes = 'Erreur lors de la modification des points';
+
+	echo json_encode(array('message' => $mes, 'statut' =>$res));
+}
+
 function classement () {
 	session_start();
 	require ('M/user_bd.php');
