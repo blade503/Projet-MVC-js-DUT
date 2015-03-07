@@ -79,5 +79,10 @@ function removePoint($id){
 	return mysqli_query($link, $req);
 }
 
-
+function getProfil($id){
+include('M/configSQL.php');
+	$query = "SELECT * FROM user WHERE id = '%s'";
+	$req = sprintf($query, $id);
+	return mysqli_query($link, $req);
+}
 ?>

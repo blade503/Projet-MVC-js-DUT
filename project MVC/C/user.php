@@ -109,4 +109,22 @@ function classement () {
 
 	echo json_encode(array('data' => $tab, 'statut' =>true));
 }
+
+function profil(){
+	session_start();
+	require ('M/user_bd.php');
+
+	$result =  getProfil($_SESSION['user']);
+	$i = 0;
+    $tab = array();
+
+	while ($row = mysqli_fetch_assoc($result)) {
+		$tab[$i]['nom'] = $row['nom'];
+   		$tab[$i]['score']= $row['score'];
+   		$tab[$i]['mail']= $row['mail'];
+   		$i++;
+	}
+
+	echo json_encode(array('data' => $tab, 'statut' =>true));
+}
 ?>
