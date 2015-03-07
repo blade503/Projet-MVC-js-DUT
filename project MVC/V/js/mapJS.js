@@ -1,7 +1,15 @@
-﻿var gData;
+﻿var gData = [
+ {"FIELD1":"31000","FIELD2":"31555","FIELD3":"","FIELD4":"Toulouse","FIELD5":"","FIELD6":"TOULOUSE","FIELD7":"TOULOUSE","FIELD8":"73","FIELD9":"MIDI-PYRENEES","FIELD10":"31","FIELD11":"Haute-Garonne","FIELD12":"43.6043902","FIELD13":"1.448302","FIELD14":"T420","FIELD15":"TLS"},
+ {"FIELD1":"67000","FIELD2":"67482","FIELD3":"","FIELD4":"Strasbourg","FIELD5":"","FIELD6":"STRASBOURG","FIELD7":"STRASBOURG","FIELD8":"42","FIELD9":"ALSACE","FIELD10":"67","FIELD11":"Bas-Rhin","FIELD12":"48.6019858","FIELD13":"7.7835217","FIELD14":"S362","FIELD15":"STRSPRK"},
+ {"FIELD1":"33000","FIELD2":"33063","FIELD3":"","FIELD4":"Bordeaux","FIELD5":"","FIELD6":"BORDEAUX","FIELD7":"BORDEAUX","FIELD8":"72","FIELD9":"AQUITAINE","FIELD10":"33","FIELD11":"Gironde","FIELD12":"44.8350088","FIELD13":"-0.587269","FIELD14":"B632","FIELD15":"PRTKS"},
+ {"FIELD1":"59000","FIELD2":"59350","FIELD3":"","FIELD4":"Lille","FIELD5":"","FIELD6":"LILLE","FIELD7":"LILLE","FIELD8":"31","FIELD9":"NORD-PAS-DE-CALAIS","FIELD10":"59","FIELD11":"Nord","FIELD12":"50.629059","FIELD13":"3.06038","FIELD14":"L400","FIELD15":"LL"},
+ {"FIELD1":"13001","FIELD2":"13055","FIELD3":"","FIELD4":"Marseille","FIELD5":"","FIELD6":"MARSEILLE","FIELD7":"MARSEILLE","FIELD8":"93","FIELD9":"PROVENCE-ALPES-COTE D'AZUR","FIELD10":"13","FIELD11":"Bouches-du-Rhône","FIELD12":"43.294418","FIELD13":"5.35999","FIELD14":"M624","FIELD15":"MRSL"},
+ {"FIELD1":"69001","FIELD2":"69123","FIELD3":"","FIELD4":"Lyon","FIELD5":"","FIELD6":"LYON","FIELD7":"LYON","FIELD8":"82","FIELD9":"RHONE-ALPES","FIELD10":"69","FIELD11":"Rhône","FIELD12":"45.7712918","FIELD13":"4.8280831","FIELD14":"L500","FIELD15":"LN"},
+ {"FIELD1":"75003","FIELD2":"75103","FIELD3":"","FIELD4":"PARIS","FIELD5":"","FIELD6":"PARIS","FIELD7":"PARIS","FIELD8":"11","FIELD9":"ILE-DE-FRANCE","FIELD10":"75","FIELD11":"Paris","FIELD12":"2.35","FIELD13":"48.853","FIELD14":"P620","FIELD15":"PRS"},
+ {"FIELD1":"63000","FIELD2":"63113","FIELD3":"","FIELD4":"Clermont-Ferrand","FIELD5":"","FIELD6":"CLERMONT-FERRAND","FIELD7":"CLERMONT FERRAND","FIELD8":"83","FIELD9":"AUVERGNE","FIELD10":"63","FIELD11":"Puy-de-Dôme","FIELD12":"45.780788","FIELD13":"3.11949","FIELD14":"C465","FIELD15":"KLRMNTFRNT"}
+]
 
 window.onload = function () {
-	
 	
 	//Chargement initial de la MAP
 	var map = L.map('map').setView([46.603354,1.8883335],6);
@@ -86,26 +94,24 @@ window.onload = function () {
 			L.circle(e.latlng, 1).addTo(map);			
 		    }
 		});
-	}	
-	
-	getData();
+	}
 
-	function getData(){
+console.log(gData);	
+}
+
+function getData(){
 		$.ajax({
 		datatype: 'json',
 		url: "M/BDville.json",
 		success: function(data)
 		{
+			var data = eval(data);
 			console.log("ça marche pour le fichier JSON",data);
-			gData=data;
-			console.log(gData);
+			return data;
 		},
 		error: function(err)
 		{
-			console.log("ça plante pour le fichier JSON",err)
+			console.log("ça plante pour le fichier JSON",err);
 		},
 	});	
-	}
-
-	
 }
