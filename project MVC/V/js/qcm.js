@@ -78,7 +78,7 @@ function isIn(ville){
 
 function question (temps_imparti)  {
 	var nbrRep=0;
-	//on récupère 4 ville avec coord de chaque
+	//on récupère 4 ville avec coord de chaque dans le tableau reponses
 	var num=Math.floor(Math.random()*tabObject.length);
 	while(nbrRep<4){
 		var ville = {nom:tabObject[i].["FIELD4"],longitude:tabObject[i].["FIELD12"],latitude:tabObject[i].["FIELD13"]}
@@ -91,17 +91,7 @@ function question (temps_imparti)  {
 		}
 	}
 	
-	
-		var num=Math.floor(Math.random()*tabObject.length);
-		for (int k=0;k<reponses.length;k++){
-			if(reponses[k].nom == tabObject[i].["FIELD4"]){
-				
-			}
-		}
-		var ville = {nom:tabObject[i].["FIELD4"],longitude:tabObject[i].["FIELD12"],latitude:tabObject[i].["FIELD13"]}
-		
-		var reponses[i]= ville;
-
+	$( "#reponse1" ).
 	//on initialise les cases
 	
 	//mettre un pion qui est la réponse voulut
@@ -128,14 +118,6 @@ function reponse(iChoix, repGood) {
 		alert (repOK); 
 	}
 	lancer();
-}
-
-function htmlQuestion(numQ) {
-	var quest = "<h3 align='center'> QUESTION : </h3><hr>";
-	quest += tabObject[numQ].question;
-	quest += htmlDivDrag(numQ);
-	quest += "<div id='droppable' class='ui-widget-header'><p>reponse ?</p></div>";
-	return quest;
 }
 
 function htmlDivDrag(numQ) {

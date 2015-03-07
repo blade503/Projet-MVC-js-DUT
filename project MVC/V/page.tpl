@@ -29,7 +29,7 @@
 	
 	<style>
 		#map { height: 600px}
-		#droppable { width: 100; height: 150px; padding: 0.5em; float: left; margin: 10px; 
+		#droppable { width: 100; height: 150px; padding: 0.5em; float: left; margin: 10px; }
 		.ui-widget-content { width: 130px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; background-color: #ccffcc;}
 	</style>
 </head>
@@ -76,24 +76,10 @@
 </nav>
 
 
-	<div class="container" id="page">
+	<div class="container" >
 			<div id="map"></div>
-		
-			<div id="reponse1" class="ui-widget-content">
-				<p>France</p>
-			</div>
-			<div id="reponse2" class="ui-widget-content">
-				<p>Canada</p>
-			</div>
-			<div id="reponse3" class="ui-widget-content">
-				<p>Italie</p>
-			</div>
-			<div id="reponse4" class="ui-widget-content">
-				<p>Belgique</p>
-			</div>
-			<div id="info" class="ui-widget-content">
-				<p>Location (Gps)</p>
-			</div>
+			<div id="page"></div>
+			
 	</div>
 
 
