@@ -79,16 +79,16 @@
 	<div class="container" id="page">
 			<div id="map"></div>
 		
-			<div id="France" class="ui-widget-content">
+			<div id="reponse1" class="ui-widget-content">
 				<p>France</p>
 			</div>
-			<div id="Canada" class="ui-widget-content">
+			<div id="reponse2" class="ui-widget-content">
 				<p>Canada</p>
 			</div>
-			<div id="Italie" class="ui-widget-content">
+			<div id="reponse3" class="ui-widget-content">
 				<p>Italie</p>
 			</div>
-			<div id="Belgique" class="ui-widget-content">
+			<div id="reponse4" class="ui-widget-content">
 				<p>Belgique</p>
 			</div>
 			<div id="info" class="ui-widget-content">

@@ -16,11 +16,11 @@ window.onload = function () {
     L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {attribution: 'PING',maxZoom:6,minZoom:6}).addTo(map);
 	
 	//Rendre draggable les div des pays
-	$( "#France" ).draggable({ revert: "valid" });
-	$( "#Canada" ).draggable({ revert: "valid" });
-	$( "#Italie" ).draggable({ revert: "valid" });
-	$( "#Belgique" ).draggable({ revert: "valid" });
-
+	$( "#reponse1" ).draggable({ revert: "valid" });
+	$( "#reponse2" ).draggable({ revert: "valid" });
+	$( "#reponse3" ).draggable({ revert: "valid" });
+	$( "#reponse4" ).draggable({ revert: "valid" });
+	
 	//Rendre la map droppable
 	 $( "#map" ).droppable({
 		 
@@ -95,8 +95,6 @@ window.onload = function () {
 		    }
 		});
 	}
-
-console.log(gData);	
 }
 
 function getData(){
