@@ -73,24 +73,25 @@
 	</div>
 </nav>
 
-	<div class="container">
-	 <div id="map"></div>
 
-	<div id="France" class="ui-widget-content">
-		<p>France</p>
-	</div>
-	<div id="Canada" class="ui-widget-content">
-		<p>Canada</p>
-	</div>
-	<div id="Italie" class="ui-widget-content">
-		<p>Italie</p>
-	</div>
-	<div id="Belgique" class="ui-widget-content">
-		<p>Belgique</p>
-	</div>
-	<div id="info" class="ui-widget-content">
-		<p>Location (Gps)</p>
-	</div>
+	<div class="container">
+			<div id="map"></div>
+		
+			<div id="France" class="ui-widget-content">
+				<p>France</p>
+			</div>
+			<div id="Canada" class="ui-widget-content">
+				<p>Canada</p>
+			</div>
+			<div id="Italie" class="ui-widget-content">
+				<p>Italie</p>
+			</div>
+			<div id="Belgique" class="ui-widget-content">
+				<p>Belgique</p>
+			</div>
+			<div id="info" class="ui-widget-content">
+				<p>Location (Gps)</p>
+			</div>
 	</div>
 
 
