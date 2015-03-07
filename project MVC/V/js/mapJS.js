@@ -2,7 +2,7 @@
 	
 	//Chargement initial de la MAP
 	var map = L.map('map').setView([46.603354,1.8883335],6);
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: 'PING'}).addTo(map);
+        L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {attribution: 'PING',maxZoom:6,minZoom:6}).addTo(map);
 	
 	//Rendre draggable les div des pays
 	$( "#France" ).draggable({ revert: "valid" });
