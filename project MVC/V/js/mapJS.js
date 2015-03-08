@@ -176,7 +176,7 @@ function htmlQuestion(numQ) {
 function htmlDivDrag(numQ) {
 	var prop="";
 	for(i=0;i<tabObject[numQ]["choix"].length;i++) {
-			prop += "<div class='draggable ui-widget-content' style='float: left' id='";
+			prop += "<div class='draggable ui-widget-content question' style='float: left' id='";
 			prop += i;
 			prop += "'><p>";	
 			prop += tabObject[numQ]["choix"][i];
