@@ -52,7 +52,7 @@ function cleanMap(){
 	map.removeLayer(markerWrong);
 	map.removeLayer(popup1);
 	map.removeLayer(popup2);
-	$('#map').droppable( 'enable');
+	$('div.drop').droppable( 'enable');
 }
 
 function question (temps_imparti)  {
@@ -128,9 +128,7 @@ function traitementWrong(choix){
 
 			map.addLayer(popup1).addLayer(popup2);
 
-			
-
-			console.log(ville);
+		
 			var pointList = [latlng, marker.getLatLng()];
 			polyline = new L.polyline(pointList, {color: 'red'}).addTo(map);	
 			alert(repKO +"\nVous etiez à " + Math.floor(Distance(marker.getLatLng()['lat'],marker.getLatLng()['lng'], markerWrong.getLatLng()['lat'],markerWrong.getLatLng()['lng'] )/1000 )+ "km");
@@ -141,7 +139,7 @@ function traitementWrong(choix){
 }
 
 function reponse(iChoix, repGood) {
-	$('#map').droppable('disable' );
+	$('div.drop').droppable('disable' );
 	clearTimeout(timer);
 	if (iChoix != repGood) {
 		diminuerScore();

@@ -127,6 +127,8 @@ function deconnexion(){
 				if ( $( "#profil" ).hasClass("active") ) {
 					$("#jexDeco").addClass("activeHead");
 				}
+				clearTimeout(timer);
+
 			} else alert(data.message); 
 			return false;
 		}
