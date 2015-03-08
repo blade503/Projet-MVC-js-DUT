@@ -29,7 +29,9 @@ function JexAction(){
 	tabObject = [
 		{	choix: ["paris","lille","caen","Le Havre"], reponse : 0}, 
 		{	choix: ["nice","marseille","toulouse","montpellier"], reponse : 3}, 
-		{	choix: ["montpellier","Clermont-Ferrand","Aix-en-Provence","monaco"], reponse : 1}
+		{	choix: ["montpellier","Clermont-Ferrand","Aix-en-Provence","monaco"], reponse : 1},
+		{	choix: ["Aix-en-Provence","Lyon","Bordeaux","Strasbourg"], reponse : 2}, 
+		{	choix: ["La Rochelle","Quimper","Brest","Deauville"], reponse : 0}
 	];
 	 map = new L.map('map').setView([46.603354,1.8883335],6);
     L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {attribution: 'PING',maxZoom:6,minZoom:6}).addTo(map);
