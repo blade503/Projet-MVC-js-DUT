@@ -6,9 +6,9 @@ var repOK = 'Bonne r\351ponse ! \nVous gagnez 1 point';
 var repKO = 'D\351sol\351\nMauvaise Réponse\nVous perdez 1 point';
 var repNO = 'Votre temps de réponse est trop long\nVous avez perdu';
 
-var invite = "Identifiez le plus vite possible la ville indiquée parmis la liste de choix !</br>";
-	invite += "Attention au compteur !</br>Vous n'avez que 10 secondes pour répondre</br>";
-	invite += "<a href='' class='btn btn-default'  onclick='question(temps_imparti); return false'>d\351marrer</a>";
+var invite = "</br></br><div class='jumbotron'><h4>Identifiez le plus vite possible la ville indiquée parmis la liste de choix !</h4>";
+	invite += "<h4>Attention au compteur !</h4><h4>Vous n'avez que 10 secondes pour répondre</h4>";
+	invite += "<a href='' class='btn btn-primary btn-lg'  onclick='question(temps_imparti); return false'>d\351marrer</a></div>";
 var map;
 var marker;
 var markerWrong;
