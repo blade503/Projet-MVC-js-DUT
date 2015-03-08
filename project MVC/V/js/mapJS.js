@@ -24,7 +24,7 @@ var tabObject;
 //****************************************************************//
 
 function JexAction(){
-	document.getElementById("page").innerHTML ="<div id='map' class='drop'></div><div id='contenu'></div>"; 
+	document.getElementById("page").innerHTML ="<div class='drop' id='map'></div><div id='contenu'></div>"; 
 	q =  document.getElementById('contenu');
 	tabObject = [
 		{	choix: ["paris","lille","caen","Le Havre"], reponse : 0}, 
@@ -52,6 +52,7 @@ function cleanMap(){
 	map.removeLayer(markerWrong);
 	map.removeLayer(popup1);
 	map.removeLayer(popup2);
+	$('#map').droppable( 'enable');
 }
 
 function question (temps_imparti)  {
@@ -140,6 +141,7 @@ function traitementWrong(choix){
 }
 
 function reponse(iChoix, repGood) {
+	$('#map').droppable('disable' );
 	clearTimeout(timer);
 	if (iChoix != repGood) {
 		diminuerScore();
