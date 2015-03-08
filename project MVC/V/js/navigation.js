@@ -4,6 +4,17 @@ $(
 		$("#regles").click(regles);
 		$("#classement").click(classement);
 		$("#jex").click(jex);
+		$("#jexDeco").click(accueil);
+
+
+
+		if ($('#jex').length) {
+		  JexAction();
+		} else {
+			accueil();
+		}
+
+
 });
 
 
@@ -28,6 +39,8 @@ function classement(){
 function jex(){
 	$(".item").removeClass("active").removeClass("activeHead");
 	$("#jex").addClass("activeHead");
+	$("#page").html("");
+	JexAction();
 }
 
 function regleAction(){
@@ -83,9 +96,9 @@ function augmenterScore(){
 		url: "index.php?control=user&action=augmenterScore",
 		success: function(retour){
 			var data = eval('(' + retour + ')');
-			if(data.statut){
+			if(!data.statut){
 				alert(data.message); 
-			} else alert(data.message); 
+			}
 		}
 	});	
 }
@@ -96,9 +109,9 @@ function diminuerScore(){
 		url: "index.php?control=user&action=diminuerScore",
 		success: function(retour){
 			var data = eval('(' + retour + ')');
-			if(data.statut){
+			if(!data.statut){
 				alert(data.message); 
-			} else alert(data.message); 
+			}
 		}
 	});	
 }
@@ -124,4 +137,15 @@ function profilAction(){
 			return "false";
 		}
 	});	
+}
+
+function accueil(){
+	$(".item").removeClass("active").removeClass("activeHead");
+	$("#jexDeco").addClass("activeHead");
+	$("#page").html(accueilAction);
+}
+
+function accueilAction(){
+
+	return "coucou";
 }

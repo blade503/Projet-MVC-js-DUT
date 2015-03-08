@@ -37,9 +37,15 @@
 
 <nav class="navbar navbar-inverse">
 	<div class="container">
+		<?php if( !isset($_SESSION['user'])) { ?>
+		<div id="jexDeco" class="navbar-header activeHead item">
+			<a class="navbar-brand" href="#">Jex</a>
+		</div>
+		<?php } else { ?>
 		<div id="jex" class="navbar-header activeHead item">
 			<a class="navbar-brand" href="#">Jex</a>
 		</div>
+		<?php } ?>
 		<div id="navbar" class="">
 			<ul class="nav navbar-nav">
 				<?php if( isset($_SESSION['user'])) { ?>
@@ -76,10 +82,7 @@
 </nav>
 
 
-	<div class="container" >
-			<div id="map"></div>
-			<div id="page"></div>
-			
+	<div id="page" class="container" >		
 	</div>
 
 

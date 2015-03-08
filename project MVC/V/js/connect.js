@@ -63,6 +63,11 @@ if(name === '' || mail === ''|| mdp === ''|| confMdp === '') {
 				$("#profil").click(profil);
 				$( "#dialog1" ).dialog("close");
 				$("#deco").click(deconnexion);
+				$("#jexDeco").attr('id','jex');
+				$("#jex").click(jex);
+				if ( $( "#jex" ).hasClass("activeHead") ) {
+					JexAction();
+				}
 			} else alert(data.message);
 			
 		}
@@ -90,6 +95,12 @@ if(nameCon === '' || passwordCo ==='') {
 				$( "#classement" ).before( "<li id='profil' class='item'><a  href='#''>Profil</a></li>" );
 				$("#profil").click(profil);
 				$( "#dialog2" ).dialog("close");
+				$("#jexDeco").attr('id','jex');
+				$("#jex").click(jex);
+				if ( $( "#jex" ).hasClass("activeHead") ) {
+					JexAction();
+				}
+				
 			} else alert(data.message);
 		}
 	});
@@ -110,6 +121,12 @@ function deconnexion(){
 				$( "#profil" ).replaceWith('');
 				$("#ouvrir").click(function() { $( "#dialog1" ).dialog("open"); });
 				$("#ouvrirConn").click(function() { $( "#dialog2" ).dialog("open"); });
+				$("#jex").attr('id','jexDeco');
+				$("#jexDeco").click(accueil);
+				accueil();
+				if ( $( "#profil" ).hasClass("active") ) {
+					$("#jexDeco").addClass("activeHead");
+				}
 			} else alert(data.message); 
 			return false;
 		}
