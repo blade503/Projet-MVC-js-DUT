@@ -48,7 +48,7 @@ function regleAction(){
 	"<h1>Les règles de Jex</h1>" +
 	"</div><br><br>";
 	text += "<div class='row'><br>"+
-	"<div class='col-sm-12'><blockquote><p class='text-left'>Identifiez le plus vite possible la ville indiquée parmis la liste de choix !</p></blockquote></div></div>";
+	"<div class='col-sm-12'><blockquote><p class='text-left'>Identifiez en moins de 10 secondes la ville indiquée parmis la liste de choix !</p></blockquote></div></div>";
 		text += "<div class='row'>"+
 	"<div class=' col-sm-3'><blockquote><p class='text-center'>Attention au compteur !</p></blockquote></div></div>";
 		text += "<div class='row'>"+

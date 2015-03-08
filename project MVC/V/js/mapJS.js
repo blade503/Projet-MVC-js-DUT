@@ -1,49 +1,68 @@
 ﻿var timer;  //variable référenéant un objet temporisateur
 var  temps_imparti =  10000;  //temps imparti pour donner la réponse (10s)
-var q; //référence au bloc div d'affichage (<div "id=QUEST"></div>)
+var q; 
 
 var repOK = 'Bonne r\351ponse ! \nVous gagnez 1 point';
 var repKO = 'D\351sol\351\nMauvaise Réponse\nVous perdez 1 point';
 var repNO = 'Votre temps de réponse est trop long\nVous avez perdu';
 
-var invite = "Identifiez le plus vite possible la ville indiquée parmis la liste de choix !</br>";
-	invite += "Attention au compteur !</br>Vous n'avez que 10 secondes pour répondre</br>";
+var tabVilles = new Array("Paris","Marseille","Lyon","Toulouse","Nice","Nantes","Strasbourg","Montpellier","Bordeaux","Lille","Rennes","Reims","Le Havre","Saint-Étienne","Toulon","Grenoble","Dijon","Angers","Nîmes","Villeurbanne","Saint-Denis ","Le Mans","Clermont-Ferrand","Aix-en-Provence","Brest","Limoges","Tours","Amiens","Perpignan","Metz","Boulogne-Billancourt","Besançon","Orléans","Rouen","Mulhouse","Caen","Saint-Denis ","Nancy","Argenteuil ","Saint-Paul ","Montreuil ","Roubaix","Tourcoing","Dunkerque","Nanterre","Créteil","Avignon","Vitry-sur-Seine","Poitiers","Courbevoie","Fort-de-France","Versailles","Colombes","Asnières-sur-Seine","Aulnay-sous-Bois","Saint-Pierre ","Rueil-Malmaison","Pau","Aubervilliers","Champigny-sur-Marne","Le Tampon","Antibes","Saint-Maur-des-Fossés","La Rochelle","Cannes","Béziers","Calais","Saint-Nazaire","Colmar","Drancy","Bourges","Mérignac ","Ajaccio","Issy-les-Moulineaux","Levallois-Perret","La Seyne-sur-Mer","Quimper","Noisy-le-Grand","Valence ","Villeneuve-d'Ascq","Neuilly-sur-Seine","Antony","Vénissieux","Cergy","Troyes","Clichy","Pessac","Les Abymes","Ivry-sur-Seine","Chambéry","Lorient","Niort","Sarcelles","Montauban","Villejuif","Saint-Quentin","Hyères","Cayenne","Épinay-sur-Seine","Saint-André ","Beauvais","Maisons-Alfort","Cholet","Meaux","Chelles","Pantin","Fontenay-sous-Bois","La Roche-sur-Yon","Bondy","Vannes","Saint-Louis ","Fréjus","Arles","Clamart","Évry","Le Blanc-Mesnil","Narbonne","Sartrouville","Grasse","Annecy","Laval ","Belfort","Vincennes","Charleville-Mézières","Évreux","Sevran","Albi","Montrouge","Bobigny","Martigues","Saint-Ouen ","Brive-la-Gaillarde","Suresnes","Carcassonne","Cagnes-sur-Mer","Corbeil-Essonnes","Saint-Brieuc","Blois","Bayonne","Aubagne","Châlons-en-Champagne","Meudon","Châteauroux","Saint-Malo","Chalon-sur-Saône","Sète","Puteaux","Alfortville","Salon-de-Provence","Massy ","Mantes-la-Jolie","Bastia","Vaulx-en-Velin","Saint-Herblain","Le Cannet","Valenciennes","Istres","Gennevilliers","Boulogne-sur-Mer","Livry-Gargan","Saint-Priest ","Rosny-sous-Bois","Caluire-et-Cuire","Angoulême","Douai","Tarbes","Wattrelos","Castres","Choisy-le-Roi","Talence","Thionville","Arras","Alès","Garges-lès-Gonesse","Gap","Saint-Laurent-du-Maroni","Melun","Bourg-en-Bresse","Noisy-le-Sec","Compiègne","La Courneuve","Le Lamentin","Marcq-en-Barœul","Saint-Germain-en-Laye","Rezé","Bron","Anglet","Gagny","Chartres","Bagneux ","Saint-Martin-d'Hères","Montluçon","Pontault-Combault","Poissy","Draguignan","Joué-lès-Tours","Savigny-sur-Orge","Cherbourg-Octeville","Saint-Joseph ","Le Port ","Colomiers","Saint-Martin ","Villefranche-sur-Saône","Stains","Saint-Benoît ","Échirolles","Villepinte ","Roanne","Montélimar","Saint-Chamond","Nevers","Conflans-Sainte-Honorine","Auxerre","Sainte-Geneviève-des-Bois ","Châtillon ","Bagnolet","Vitrolles ","Thonon-les-Bains","Neuilly-sur-Marne","Haguenau","Marignane","Saint-Raphaël ","Tremblay-en-France","La Ciotat","Six-Fours-les-Plages","Creil","Agen","Romans-sur-Isère","Montigny-le-Bretonneux","Le Perreux-sur-Marne","Franconville ","Annemasse","Villeneuve-Saint-Georges","Saint-Leu ","Mâcon","Cambrai","Lens ","Houilles","Épinal","Châtenay-Malabry","Schiltigheim","Sainte-Marie ","Liévin","Châtellerault","Meyzieu","Goussainville ","Viry-Châtillon","Dreux","L'Haÿ-les-Roses","Plaisir ","Mont-de-Marsan","Maubeuge","Nogent-sur-Marne","Les Mureaux","Clichy-sous-Bois","La Possession","Dieppe ","Chatou","Vandœuvre-lès-Nancy","Malakoff ","Palaiseau","Pontoise","Charenton-le-Pont","Rillieux-la-Pape");
+
+var invite = "Identifiez en moins de 10 secondes la ville indiquée parmis la liste de choix !</br>";
+	invite += "Attention au compteur !</br>";
 	invite += "<a href='' class='btn btn-default'  onclick='question(temps_imparti); return false'>d\351marrer</a>";
 var map;
 var marker;
 var markerWrong;
-var numQ;
 var polyline;
 var WrongMessage="";
 var popup1;
 var popup2;
-//tableau au format JSON représentant un ensemble de questions
-//avec pour chaque question, 3 attributs : question (intitué de la question), différents choix indicés, indice de la bonne réponse
-var tabObject;
+
+
+var intituleQuestion;
 
 //****************************************************************//
 
 function JexAction(){
 	document.getElementById("page").innerHTML ="<div class='drop' id='map'></div><div id='contenu'></div>"; 
 	q =  document.getElementById('contenu');
-	tabObject = [
-		{	choix: ["paris","lille","caen","Le Havre"], reponse : 0}, 
-		{	choix: ["nice","marseille","toulouse","montpellier"], reponse : 3}, 
-		{	choix: ["montpellier","Clermont-Ferrand","Aix-en-Provence","monaco"], reponse : 1}
-	];
-	 map = new L.map('map').setView([46.603354,1.8883335],6);
+	map = new L.map('map').setView([46.603354,1.8883335],6);
     L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {attribution: 'PING',maxZoom:6,minZoom:6}).addTo(map);
 	lancer();
 }
+function setQuestion(){
+	var taille = tabVilles.length;
+	intituleQuestion = {	
+		choix: [
+			tabVilles[Math.floor((Math.random() * taille))], 
+			tabVilles[Math.floor((Math.random() * taille))],
+			tabVilles[Math.floor((Math.random() * taille))],
+			tabVilles[Math.floor((Math.random() * taille))]
+		], 
+		reponse : Math.floor((Math.random() * 4))
+	}; 
+}
 
 function lancer() {
+	setQuestion();
 	q.innerHTML = invite;
 }
 
 function abandon () {
+	$('div.drop').droppable('disable' );
 	alert(repNO);
-	map.removeLayer(marker);
-	lancer();
+	diminuerScore();
+	popup1 = new L.Popup();
+	popup1.setLatLng(marker.getLatLng());
+	popup1.setContent(intituleQuestion.choix[intituleQuestion.reponse]);
+	map.addLayer(popup1);
+
+	setTimeout("map.removeLayer(marker)", 5000);
+	setTimeout("$('div.drop').droppable( 'enable')", 5000);
+	setTimeout("map.removeLayer(popup1)", 5000);
+
+	setTimeout("lancer()", 5000);
 }
 
 function cleanMap(){
@@ -56,9 +75,7 @@ function cleanMap(){
 }
 
 function question (temps_imparti)  {
-	numQ=Math.floor(Math.random()*tabObject.length);
-	IdVille	=tabObject[numQ].choix[tabObject[numQ].reponse];
-
+	IdVille	=intituleQuestion.choix[intituleQuestion.reponse];
 	$.ajax({
 	    type: 'GET',
 	    url: "http://nominatim.openstreetmap.org/search",
@@ -84,17 +101,17 @@ function question (temps_imparti)  {
 	    }
 	});
 
-	q.innerHTML = htmlQuestion(numQ);
+	q.innerHTML = htmlQuestion();
 	$('div.draggable').draggable();
 	$('div.drop').droppable({
 		drop: function( event, ui ) {
-			reponse( ui.draggable.attr('id') , tabObject[numQ].reponse);
+			reponse( ui.draggable.attr('id') , intituleQuestion.reponse);
 		}
 	});
 	timer = setTimeout("abandon()", temps_imparti);
 }
-function traitementWrong(choix){
-	var ville=tabObject[numQ].choix[choix];
+function traitementWrong(choix, rep){
+	var ville=intituleQuestion.choix[choix];
 	$.ajax({
 	    type: 'GET',
 	    url: "http://nominatim.openstreetmap.org/search",
@@ -120,7 +137,7 @@ function traitementWrong(choix){
 
 			popup1 = new L.Popup();
 			popup1.setLatLng(marker.getLatLng());
-			popup1.setContent(tabObject[numQ].choix[tabObject[numQ].reponse]);
+			popup1.setContent(intituleQuestion.choix[intituleQuestion.reponse]);
 
 			popup2 = new L.Popup();
 			popup2.setLatLng(markerWrong.getLatLng());
@@ -131,7 +148,7 @@ function traitementWrong(choix){
 		
 			var pointList = [latlng, marker.getLatLng()];
 			polyline = new L.polyline(pointList, {color: 'red'}).addTo(map);	
-			alert(repKO +"\nVous etiez à " + Math.floor(Distance(marker.getLatLng()['lat'],marker.getLatLng()['lng'], markerWrong.getLatLng()['lat'],markerWrong.getLatLng()['lng'] )/1000 )+ "km");
+			alert(rep +"\nVous etiez à " + Math.floor(Distance(marker.getLatLng()['lat'],marker.getLatLng()['lng'], markerWrong.getLatLng()['lat'],markerWrong.getLatLng()['lng'] )/1000 )+ "km");
 			setTimeout("lancer()", 5000);
 			setTimeout("cleanMap()", 5000);
 	    }
@@ -143,16 +160,13 @@ function reponse(iChoix, repGood) {
 	clearTimeout(timer);
 	if (iChoix != repGood) {
 		diminuerScore();
-		traitementWrong(iChoix);
-		
-		
+		traitementWrong(iChoix, repKO);		
 	}
 	else {
 		augmenterScore();
 		alert (repOK); 
 		lancer();
-		map.removeLayer(marker);
-		map.removeLayer(markerWrong);
+		cleanMap();
 	}
 	$("#"+iChoix).animate({
         top: "0px",
@@ -161,21 +175,21 @@ function reponse(iChoix, repGood) {
 
 }
 
-function htmlQuestion(numQ) {
+function htmlQuestion() {
 	var quest = "<h3 align='center'> QUESTION : ";
 	quest += "Quel est la ville pointé sur la carte ci-dessus ?";
 	quest += "</h3><hr>"
-	quest += htmlDivDrag(numQ);
+	quest += htmlDivDrag();
 	return quest;
 }
 
-function htmlDivDrag(numQ) {
+function htmlDivDrag() {
 	var prop="";
-	for(i=0;i<tabObject[numQ]["choix"].length;i++) {
+	for(i=0;i<intituleQuestion["choix"].length;i++) {
 			prop += "<div class='draggable ui-widget-content' style='float: left' id='";
 			prop += i;
 			prop += "'><p>";	
-			prop += tabObject[numQ]["choix"][i];
+			prop += intituleQuestion["choix"][i];
 			prop += "</p></div>";
 	}
 	return prop;
