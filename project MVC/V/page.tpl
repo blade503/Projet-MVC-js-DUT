@@ -30,7 +30,6 @@
 	<style>
 		#map { height: 600px}
 		#droppable { width: 100; height: 150px; padding: 0.5em; float: left; margin: 10px; }
-		.ui-widget-content { width: 130px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; background-color: #ccffcc;}
 	</style>
 </head>
 <body>
