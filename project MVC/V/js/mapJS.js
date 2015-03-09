@@ -30,7 +30,7 @@ function JexAction(){
 	q =  document.getElementById('contenu');
 
 	map = new L.map('map').setView([46.603354,1.8883335],6);
-    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {attribution: 'Programmation Web Client IUT Paris Descartes, Robin Jolliet, Wetzler Alexandre',maxZoom:6,minZoom:6}).addTo(map);
+    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {attribution: 'Programmation Web Client IUT Paris Descartes, Robin Jolliet, Wetzler Alexandre',maxZoom:10,minZoom:6}).addTo(map);
 	lancer();
 }
 function setQuestion(){
@@ -182,7 +182,7 @@ function reponse(iChoix, repGood) {
 function htmlQuestion() {
 	var quest = "<h3 align='center'> QUESTION : ";
 	quest += "Quel est la ville pointée sur la carte ci-dessus ?";
-	quest += "</h3><hr>"
+	quest += "<span class='inline'>00:00</span></h3><hr>"
 	quest += htmlDivDrag();
 	return quest;
 }

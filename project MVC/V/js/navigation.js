@@ -147,5 +147,10 @@ function accueil(){
 
 function accueilAction(){
 
-	return "<div class='container'><h3>Bienvenue dans JEX.</h3></br><h4>Ce jeux simple d'apparence va mettre à l'épreuve vos connaissances de la france et de ses nombreuses communes</h4><h4>Jouez avec vos amis et soyez le meilleur !</h4><h4>Inscrivez vous dès maintenant</h4></div></br></br></br><div class='row'><div class='col-sm-6 col-md-4'><div class='thumbnail'><img src='V/images/Carte.png'><div class='caption'><h3>Un affichage de vos erreurs</h3><p>Un trajet entre votre réponse et le résultat si celle-ci est mauvaise</p></div></div></div><div class='col-sm-6 col-md-4'><div class='thumbnail'><img src='V/images/Carte2.png'><div class='caption'><h3>Une carte de grande qualité</h3><p>La carte vous permettra de voir au mieux ce magnifique pays qu'est la france</p></div></div></div><div class='col-sm-6 col-md-4'><div class='thumbnail'><img src='V/images/Boot.png'><div class='caption'><h3>Aucun temps de chargement</h3><p>Un jeu complètement réalisé en javascript</p></div></div></div></div>";
+	return "<div class='container'><h3>Bienvenue dans JEX.</h3></br><h4>Ce jeux simple d'apparence va mettre à l'épreuve vos connaissances de la france et de ses nombreuses communes</h4>"
+	+"<h4>Jouez avec vos amis et soyez le meilleur !</h4><h4>Inscrivez vous dès maintenant</h4></div></br></br></br>"
+	+"<div class='row'>"
+	+"<div class='col-sm-6 col-md-4'><div class='thumbnail'><img src='V/images/Carte.png'><div class='caption'><h3>Un affichage de vos erreurs</h3><p>Un trajet entre votre réponse et le résultat si celle-ci est mauvaise</p>"
+	+"</div></div></div><div class='col-sm-6 col-md-4'><div class='thumbnail'><img src='V/images/Carte2.png'><div class='caption'><h3>Une carte de grande qualité</h3><p>La carte vous permettra de voir au mieux ce magnifique pays qu'est la france</p>"
+	+"</div></div></div><div class='col-sm-6 col-md-4'><div class='thumbnail'><img src='V/images/Boot.png'><div class='caption'><h3>Aucun temps de chargement</h3><p>Un jeu complètement réalisé en javascript</p></div></div></div></div>";
 }
