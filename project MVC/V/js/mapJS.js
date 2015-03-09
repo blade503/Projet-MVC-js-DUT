@@ -9,8 +9,9 @@ var repNO = 'Votre temps de réponse est trop long\nVous avez perdu';
 var tabVilles = new Array("Paris","Marseille","Lyon","Toulouse","Nice","Nantes","Strasbourg","Montpellier","Bordeaux","Lille","Rennes","Reims","Le Havre","Saint-Étienne","Toulon","Grenoble","Dijon","Angers","Nîmes","Villeurbanne","Saint-Denis ","Le Mans","Clermont-Ferrand","Aix-en-Provence","Brest","Limoges","Tours","Amiens","Perpignan","Metz","Boulogne-Billancourt","Besançon","Orléans","Rouen","Mulhouse","Caen","Saint-Denis ","Nancy","Argenteuil ","Saint-Paul ","Montreuil ","Roubaix","Tourcoing","Dunkerque","Nanterre","Créteil","Avignon","Vitry-sur-Seine","Poitiers","Courbevoie","Fort-de-France","Versailles","Colombes","Asnières-sur-Seine","Aulnay-sous-Bois","Saint-Pierre ","Rueil-Malmaison","Pau","Aubervilliers","Champigny-sur-Marne","Le Tampon","Antibes","Saint-Maur-des-Fossés","La Rochelle","Cannes","Béziers","Calais","Saint-Nazaire","Colmar","Drancy","Bourges","Mérignac ","Ajaccio","Issy-les-Moulineaux","Levallois-Perret","La Seyne-sur-Mer","Quimper","Noisy-le-Grand","Valence ","Villeneuve-d'Ascq","Neuilly-sur-Seine","Antony","Vénissieux","Cergy","Troyes","Clichy","Pessac","Les Abymes","Ivry-sur-Seine","Chambéry","Lorient","Niort","Sarcelles","Montauban","Villejuif","Saint-Quentin","Hyères","Cayenne","Épinay-sur-Seine","Saint-André ","Beauvais","Maisons-Alfort","Cholet","Meaux","Chelles","Pantin","Fontenay-sous-Bois","La Roche-sur-Yon","Bondy","Vannes","Saint-Louis ","Fréjus","Arles","Clamart","Évry","Le Blanc-Mesnil","Narbonne","Sartrouville","Grasse","Annecy","Laval ","Belfort","Vincennes","Charleville-Mézières","Évreux","Sevran","Albi","Montrouge","Bobigny","Martigues","Saint-Ouen ","Brive-la-Gaillarde","Suresnes","Carcassonne","Cagnes-sur-Mer","Corbeil-Essonnes","Saint-Brieuc","Blois","Bayonne","Aubagne","Châlons-en-Champagne","Meudon","Châteauroux","Saint-Malo","Chalon-sur-Saône","Sète","Puteaux","Alfortville","Salon-de-Provence","Massy ","Mantes-la-Jolie","Bastia","Vaulx-en-Velin","Saint-Herblain","Le Cannet","Valenciennes","Istres","Gennevilliers","Boulogne-sur-Mer","Livry-Gargan","Saint-Priest ","Rosny-sous-Bois","Caluire-et-Cuire","Angoulême","Douai","Tarbes","Wattrelos","Castres","Choisy-le-Roi","Talence","Thionville","Arras","Alès","Garges-lès-Gonesse","Gap","Saint-Laurent-du-Maroni","Melun","Bourg-en-Bresse","Noisy-le-Sec","Compiègne","La Courneuve","Le Lamentin","Marcq-en-Barœul","Saint-Germain-en-Laye","Rezé","Bron","Anglet","Gagny","Chartres","Bagneux ","Saint-Martin-d'Hères","Montluçon","Pontault-Combault","Poissy","Draguignan","Joué-lès-Tours","Savigny-sur-Orge","Cherbourg-Octeville","Saint-Joseph ","Le Port ","Colomiers","Saint-Martin ","Villefranche-sur-Saône","Stains","Saint-Benoît ","Échirolles","Villepinte ","Roanne","Montélimar","Saint-Chamond","Nevers","Conflans-Sainte-Honorine","Auxerre","Sainte-Geneviève-des-Bois ","Châtillon ","Bagnolet","Vitrolles ","Thonon-les-Bains","Neuilly-sur-Marne","Haguenau","Marignane","Saint-Raphaël ","Tremblay-en-France","La Ciotat","Six-Fours-les-Plages","Creil","Agen","Romans-sur-Isère","Montigny-le-Bretonneux","Le Perreux-sur-Marne","Franconville ","Annemasse","Villeneuve-Saint-Georges","Saint-Leu ","Mâcon","Cambrai","Lens ","Houilles","Épinal","Châtenay-Malabry","Schiltigheim","Sainte-Marie ","Liévin","Châtellerault","Meyzieu","Goussainville ","Viry-Châtillon","Dreux","L'Haÿ-les-Roses","Plaisir ","Mont-de-Marsan","Maubeuge","Nogent-sur-Marne","Les Mureaux","Clichy-sous-Bois","La Possession","Dieppe ","Chatou","Vandœuvre-lès-Nancy","Malakoff ","Palaiseau","Pontoise","Charenton-le-Pont","Rillieux-la-Pape");
 
 var invite = "Identifiez en moins de 10 secondes la ville indiquée parmis la liste de choix !</br>";
-	invite += "Attention au compteur !</br>";
-	invite += "<a href='' class='btn btn-default'  onclick='question(temps_imparti); return false'>d\351marrer</a>";
+var invite = "</br></br><div class='jumbotron'><h4>Identifiez le plus vite possible la ville indiquée parmis la liste de choix !</h4>";
+	invite += "<h4>Attention au compteur !</h4><h4>Vous n'avez que 10 secondes pour répondre</h4>";
+	invite += "<a href='' class='btn btn-primary btn-lg'  onclick='question(temps_imparti); return false'>d\351marrer</a></div>";
 var map;
 var marker;
 var markerWrong;
@@ -27,8 +28,9 @@ var intituleQuestion;
 function JexAction(){
 	document.getElementById("page").innerHTML ="<div class='drop' id='map'></div><div id='contenu'></div>"; 
 	q =  document.getElementById('contenu');
+
 	map = new L.map('map').setView([46.603354,1.8883335],6);
-    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {attribution: 'PING',maxZoom:6,minZoom:6}).addTo(map);
+    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {attribution: 'Programmation Web Client IUT Paris Descartes, Robin Jolliet, Wetzler Alexandre',maxZoom:6,minZoom:6}).addTo(map);
 	lancer();
 }
 function setQuestion(){
@@ -186,7 +188,7 @@ function htmlQuestion() {
 function htmlDivDrag() {
 	var prop="";
 	for(i=0;i<intituleQuestion["choix"].length;i++) {
-			prop += "<div class='draggable ui-widget-content' style='float: left' id='";
+			prop += "<div class='draggable ui-widget-content question' style='float: left' id='";
 			prop += i;
 			prop += "'><p>";	
 			prop += intituleQuestion["choix"][i];

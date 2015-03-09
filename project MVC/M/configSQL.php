@@ -1,7 +1,7 @@
 <?php
 
 $hote="localhost";   		
-$login="root";  		
+$login="Alex";  		
 $pass=""; 			
 $bd="zebra"; 
 
