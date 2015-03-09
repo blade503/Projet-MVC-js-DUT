@@ -68,8 +68,8 @@ function abandon () {
 }
 
 function cleanMap(){
-	map.removeLayer(polyline);
 	map.removeLayer(marker);
+	map.removeLayer(polyline);
 	map.removeLayer(markerWrong);
 	map.removeLayer(popup1);
 	map.removeLayer(popup2);
@@ -168,7 +168,9 @@ function reponse(iChoix, repGood) {
 		augmenterScore();
 		alert (repOK); 
 		lancer();
-		cleanMap();
+		$('div.drop').droppable( 'enable');
+		map.removeLayer(marker);
+
 	}
 	$("#"+iChoix).animate({
         top: "0px",
