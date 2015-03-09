@@ -44,6 +44,7 @@ function jex(){
 }
 
 function regleAction(){
+	clearTimeout(timer);
 	var text = "<div class='starter-template'>" +
 	"<h1>Les règles de Jex</h1>" +
 	"</div><br><br>";
@@ -64,6 +65,7 @@ function regleAction(){
 }
 
 function classementAction(){
+	clearTimeout(timer);
 var text ="";
 	$.ajax({
 		type: "POST",
@@ -117,6 +119,7 @@ function diminuerScore(){
 }
 
 function profilAction(){
+	clearTimeout(timer);
 	$.ajax({
 		type: "POST",
 		url: "index.php?control=user&action=profil",
@@ -146,6 +149,7 @@ function accueil(){
 }
 
 function accueilAction(){
+	clearTimeout(timer);
 
 	return "<div class='container'><h3>Bienvenue dans JEX.</h3></br><h4>Ce jeux simple d'apparence va mettre à l'épreuve vos connaissances de la france et de ses nombreuses communes</h4>"
 	+"<h4>Jouez avec vos amis et soyez le meilleur !</h4><h4>Inscrivez vous dès maintenant</h4></div></br></br></br>"

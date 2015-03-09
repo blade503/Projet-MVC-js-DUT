@@ -1,4 +1,5 @@
 ﻿var timer;  //variable référenéant un objet temporisateur
+var timer10;
 var  temps_imparti =  10000;  //temps imparti pour donner la réponse (10s)
 var q; 
 
@@ -19,7 +20,7 @@ var polyline;
 var WrongMessage="";
 var popup1;
 var popup2;
-
+var compteur10;
 
 var intituleQuestion;
 
@@ -63,7 +64,7 @@ function abandon () {
 	setTimeout("map.removeLayer(marker)", 5000);
 	setTimeout("$('div.drop').droppable( 'enable')", 5000);
 	setTimeout("map.removeLayer(popup1)", 5000);
-
+	clearInterval(timer10);
 	setTimeout("lancer()", 5000);
 }
 
@@ -107,9 +108,17 @@ function question (temps_imparti)  {
 					reponse( ui.draggable.attr('id') , intituleQuestion.reponse);
 				}
 			});
-			timer = setTimeout("abandon()", temps_imparti);			
+			timer = setTimeout("abandon()", temps_imparti);
+			compteur10=9;
+			timer10 = setInterval("compteur()", 1000);	
+			setTimeout('clearInterval(timer10)', temps_imparti); 
 		}
 	});
+}
+
+function compteur(){
+	$('#compteur').html(compteur10);
+	compteur10-=1;
 }
 
 function traitementWrong(choix, rep){
@@ -159,6 +168,7 @@ function traitementWrong(choix, rep){
 
 function reponse(iChoix, repGood) {
 	$('div.drop').droppable('disable' );
+	clearInterval(timer10)
 	clearTimeout(timer);
 	if (iChoix != repGood) {
 		diminuerScore();
@@ -182,7 +192,7 @@ function reponse(iChoix, repGood) {
 function htmlQuestion() {
 	var quest = "<h3 align='center'> QUESTION : ";
 	quest += "Quel est la ville pointée sur la carte ci-dessus ?";
-	quest += "<span class='inline'>00:00</span></h3><hr>"
+	quest += "<span id='compteur' class='inline'>10</span></h3><br>"
 	quest += htmlDivDrag();
 	return quest;
 }
