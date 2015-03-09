@@ -3,7 +3,7 @@
 $hote="localhost";   		
 $login="Alex";  		
 $pass=""; 			
-$bd="zebra"; 
+$bd="pwebc"; 
 
 //à l'iut 
 /*
