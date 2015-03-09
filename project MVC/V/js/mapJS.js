@@ -99,19 +99,19 @@ function question (temps_imparti)  {
 			});
 			var latlng = new L.LatLng(lati, longi);
 			marker = new L.Marker(latlng); 
-			map.addLayer(marker);			
-	    }
-	});
-
-	q.innerHTML = htmlQuestion();
-	$('div.draggable').draggable();
-	$('div.drop').droppable({
-		drop: function( event, ui ) {
-			reponse( ui.draggable.attr('id') , intituleQuestion.reponse);
+			map.addLayer(marker);
+			q.innerHTML = htmlQuestion();
+			$('div.draggable').draggable();
+			$('div.drop').droppable({
+				drop: function( event, ui ) {
+					reponse( ui.draggable.attr('id') , intituleQuestion.reponse);
+				}
+			});
+			timer = setTimeout("abandon()", temps_imparti);			
 		}
 	});
-	timer = setTimeout("abandon()", temps_imparti);
 }
+
 function traitementWrong(choix, rep){
 	var ville=intituleQuestion.choix[choix];
 	$.ajax({
